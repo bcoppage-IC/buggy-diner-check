@@ -204,7 +204,7 @@
     document.getElementById('outTax').textContent = money(tax);
     document.getElementById('outTip').textContent = money(tip);
     document.getElementById('total').textContent = money(total);
-    document.getElementById('total').textContent = money(perPerson);
+    document.getElementById('perPerson').textContent = money(total / party);
   });
 
     document.getElementById('splitBtn').addEventListener('click', function () {
