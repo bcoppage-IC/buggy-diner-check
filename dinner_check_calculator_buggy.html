@@ -148,12 +148,12 @@
       <div class="quick-tips">
         <button type="button" class="quick-tip" data-tip="15">15%</button>
         <button type="button" class="quick-tip" data-tip="18">18%</button>
-        <button type="button" class="quick-tip" data-tip="2">20%</button>
+        <button type="button" class="quick-tip" data-tip="20">20%</button>
       </div>
 
       <div class="field">
         <label for="partySize">Party Size</label>
-        <input type="number" id="partySize" class="form-control" value="1" min="1" readonly>
+        <input type="number" id="partySize" class="form-control" value="1" min="1">
       </div>
 
       <div class="actions">
@@ -169,7 +169,7 @@
       <div class="row"><span>Tax</span><span class="value" id="outTax">$0.00</span></div>
       <div class="row"><span>Tip</span><span class="value" id="outTip">$0.00</span></div>
       <div class="row grand"><span>Total</span><span class="value" id="total">$0.00</span></div>
-      <div class="row"><span>Per Person</span><span class="value" id="total">$0.00</span></div>
+      <div class="row"><span>Per Person</span><span class="value" id="perPerson">$0.00</span></div>
     </section>
 
     <p class="footer-note">Prices include nothing we did not tell you about. <strong>Thank you for dining with us!</p>
@@ -179,7 +179,7 @@
   var form = document.getElementById('checkForm');
 
   function money(n) {
-    return '$' + (Math.floor(n * 100) / 100).toFixed(2);
+    return '$' + (Math.round(n * 100) / 100).toFixed(2);
   }
 
   document.querySelectorAll('.quick-tip').forEach(function (btn) {
@@ -204,8 +204,12 @@
     document.getElementById('outTax').textContent = money(tax);
     document.getElementById('outTip').textContent = money(tip);
     document.getElementById('total').textContent = money(total);
-    document.getElementById('total').textContent = money(total / party);
+    document.getElementById('total').textContent = money(perPerson);
   });
+
+    document.getElementById('splitBtn').addEventListener('click', function () {
+    form.requestSubmit();
+});
 </script>
 </body>
 </html>
